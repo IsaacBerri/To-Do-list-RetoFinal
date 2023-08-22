@@ -1,6 +1,6 @@
 const Formulaio = document.querySelector(".modalCreate");
 
-function agregarTarea(array) {
+export function agregarTarea(array) {
     Formulaio.addEventListener("submit", (e) => {
 
         const tarea = {

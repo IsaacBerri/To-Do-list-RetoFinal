@@ -1,18 +1,14 @@
-const Formulaio = document.querySelector(".modalCreate");
+const formulario = document.querySelector(".modalCreate");
 
 export function agregarTarea(array) {
-    Formulaio.addEventListener("submit", (e) => {
-
-        const tarea = {
-            Nombre: e.target.nombre.value,
-            Categoria: e.target.categoria.value,
-            Prioridad: e.target.prioridad.value,
-            Fecha: e.target.fecha.value
-        }
-        array.push(tarea)
-    })
-
+  const tarea = {
+    Nombre: formulario.children[0].value,
+    Prioridad: formulario.children[1].value,
+    Categoria: formulario.children[2].value,
+    Fecha: formulario.children[3].value,
+  };
+  window.localStorage.setItem("List", [...array, tarea]);
+  array.push(tarea);
+  location.reload();
 }
-
-
 

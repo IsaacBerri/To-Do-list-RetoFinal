@@ -7,7 +7,7 @@ export function agregarTarea(array) {
     Categoria: formulario.children[2].value,
     Fecha: formulario.children[3].value,
   };
-  window.localStorage.setItem("List", [...array, tarea]);
+  window.localStorage.setItem("List", JSON.stringify([...array, tarea]));
   array.push(tarea);
   location.reload();
 }

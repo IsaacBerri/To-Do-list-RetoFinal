@@ -1,4 +1,5 @@
 import { agregarTarea } from "./main2.js";
+import { eliminarTarea } from "./main3.js";
 
 const containerList = document.querySelector(".containerList");
 const section = document.querySelector(".modalCreate")
@@ -13,9 +14,13 @@ task.map((x, i) => {
   createTask.id = `taks-${i}`;
   createTask.innerHTML = `
     <h3>${x.Nombre}</h3>
+    <p>${x.Prioridad}</p>
+    <p>${x.Categoria}</p>
+    <p>${x.Fecha}</p>
     <button class="delete">Eliminar</button>`;
   containerList.append(createTask);
-  console.log(x);
+  const buttonDelete = document.querySelectorAll(".delete")
+  buttonDelete[i].addEventListener('click', () => eliminarTarea(task, x.Nombre))
 });
 
 butoonCreate.addEventListener('click', () => active())
@@ -29,22 +34,3 @@ const active = () => {
 }
 
 buttonSubmit.addEventListener('click', () => {agregarTarea(task)})
-
-console.log(task);
-
-
-// main2.js
-
-// const Formulaio = document.querySelector(".modalCreate");
-
-// export function agregarTarea(array) {
-//   const tarea = {
-//     Nombre: Formulaio.children[0].value,
-//     Categoria: Formulaio.children[1].value,
-//     Prioridad: Formulaio.children[2].value,
-//     Fecha: Formulaio.children[3].value,
-//   };
-//   window.localStorage.setItem("List", JSON.stringify([...array, tarea]))
-//   array.push(tarea);
-//   location.reload()
-// }

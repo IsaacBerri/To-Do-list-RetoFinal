@@ -1,36 +1,37 @@
-import { agregarTarea } from "./main2.js";
 import { eliminarTarea } from "./main3.js";
+import { renderModalCreate, renderModalEdit, renderModalFilter } from "./renderModals.js";
 
 const containerList = document.querySelector(".containerList");
-const section = document.querySelector(".modalCreate")
-const butoonCreate = document.querySelector("#buttonCreate")
-const buttonSubmit = document.querySelector('#buttonSubmit')
+const butoonCreate = document.querySelectorAll(".buttonCreate")
+const butoonFilter = document.querySelector(".buttonFilter")
 
 const task = JSON.parse(localStorage.getItem("List")) || []
 
-task.map((x, i) => {
-  const createTask = document.createElement("div");
-  createTask.className = "Task";
-  createTask.id = `taks-${i}`;
-  createTask.innerHTML = `
-    <h3>${x.Nombre}</h3>
-    <p>${x.Prioridad}</p>
-    <p>${x.Categoria}</p>
-    <p>${x.Fecha}</p>
-    <button class="delete">Eliminar</button>`;
-  containerList.append(createTask);
-  const buttonDelete = document.querySelectorAll(".delete")
-  buttonDelete[i].addEventListener('click', () => eliminarTarea(task, x.Nombre))
-});
-
-butoonCreate.addEventListener('click', () => active())
-
-const active = () => {
-  if (section.className != "modalCreate active") {
-    section.classList.add("active")
-  }else {
-    section.classList.remove("active")
-  }
+const renderizarTareas = () => {
+  task.map((x, i) => {
+    const createTask = document.createElement("div");
+    createTask.className = "task";
+    createTask.id = `taks-${i}`;
+    createTask.innerHTML = `
+      <h3>${x.Nombre}</h3>
+      <p>${x.Prioridad}</p>
+      <p>${x.Categoria}</p>
+      <p>${x.Fecha}</p>
+      <div>
+      <button class="delete">Eliminar</button>
+      <button class="edit">Editar</button>
+      </div>`;
+    containerList.append(createTask);
+    const buttonDelete = document.querySelectorAll(".delete")
+    buttonDelete[i].addEventListener('click', () => eliminarTarea(task, x.Nombre))
+    const buttonEdit = document.querySelectorAll(".edit")
+    buttonEdit[i].addEventListener('click', () => renderModalEdit(task, i))
+  });
 }
+butoonCreate.forEach((button) => {
+  button.addEventListener('click', () => renderModalCreate(task))
+})
 
-buttonSubmit.addEventListener('click', () => {agregarTarea(task)})
+butoonFilter.addEventListener('click', () => renderModalFilter(task))
+
+renderizarTareas()

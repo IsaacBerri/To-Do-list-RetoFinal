@@ -1,45 +1,56 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: black;
-    position: relative;
+  background-image: url("https://i.postimg.cc/fT4FjQSh/fondo-Log-In.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
 .header {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    align-items: center;
-
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
 }
 
 .header .title {
-    margin-left: 30px;
-    font-size: 35px;
-    letter-spacing: 2px;
-    color: white;
+  margin-left: 30px;
+  font-size: 35px;
+  letter-spacing: 2px;
+  color: white;
 }
 
 .navBar {
-    width: 100%;
-    height: 80px;
-    background-color: aqua;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  width: 100%;
+  height: 80px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.modalCreate {
-    width: 300px;
+.containerModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalCreate, .modalEdit, .modalFilter {
+    color: white;
+    width: 500px;
     height: 400px;
     background-color: black;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-40%, -50%);
 }
 
 .active {
@@ -47,25 +58,84 @@ body {
 }
 
 .containerList {
-    width: 100%;
-    height: 400px;
-    background-color: aqua;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  width: 100%;
+  height: 400px;
+  background-color: transparent;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
-.containerList h2{
-    font-size: 35px;
+.task {
+  width: 100%;
+  height: 60px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.containerList h2 {
+  font-size: 35px;
 }
 
 .footer {
-    width: 100%;
-    height: 200px;
-    margin-top: 30px;
-    background-color: aqua;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 200px;
+  margin-top: 30px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonStyle1 {
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 1em;
+  color: var(--glow-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+}
+
+.buttonStyle1::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+.buttonStyle1:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+
+.buttonStyle1:active {
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
 }

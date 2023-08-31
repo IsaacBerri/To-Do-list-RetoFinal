@@ -12,31 +12,15 @@
     </header>
     <nav class="navBar">
       <div class="containerCreate">
-        <button id="buttonCreate">Crear Lista</button>
-        <section class="modalCreate active">
-          <input name="nombre" type="text" autocomplete="off"/>
-          <select name="prioridad">
-            <option>Alta</option>
-            <option>Media</option>
-            <option>Baja</option>
-          </select>
-          <select name="categoria">
-            <option>Hogar</option>
-            <option>GYM</option>
-            <option>Trabajo</option>
-            <option>Estudio</option>
-            <option>Juegos</option>
-            <option>Otros</option>
-          </select>
-          <input type="date" name="fecha"/>
-          <button id="buttonSubmit" type="submit">Agregar</button>
-        </section>
+        <button class="buttonStyle1 buttonCreate">Crear Lista</button>
       </div>
       <div class="containerFilter">
-        <button id="buttonFilter">Filtro</button>
-        <input id="inputSearch" type="text" placeholder="Busar tarea" />
+        <button class="buttonStyle1 buttonFilter">Filtro</button>
       </div>
     </nav>
+    <div class="containerModal active">
+      <button class="buttonCreate">X</button>
+    </div>
     <main class="containerList"></main>
     <footer class="footer">
       <h2>Soy el footer</h2>

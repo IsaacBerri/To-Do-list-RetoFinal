@@ -1,5 +1,5 @@
 import { agregarTarea, filtrarTareas } from "./main2.js";
-// import { editarTarea } from "./main3.js";
+import { editarTarea } from "./main3.js";
 const containerModals = document.querySelector(".containerModal");
 
 export const renderModalCreate = (array) => {
@@ -8,10 +8,10 @@ export const renderModalCreate = (array) => {
     containerModals.removeChild(containerModals.children[1]);
   } else {
     containerModals.classList.remove("active");
-    const modalCreate = document.createElement("section");
-    modalCreate.className = "modalCreate";
+    const modalCreate = document.createElement("form");
+    modalCreate.className = "modalCreate modalStyle";
     modalCreate.innerHTML = `
-      <input name="nombre" type="text" autocomplete="off"/>
+      <input required class="inputNombre" placeholder="Nombre" type="text" autocomplete="off"/>
       <select name="prioridad">
       <option>Ninguna</option>
         <option>Alta</option>
@@ -28,7 +28,7 @@ export const renderModalCreate = (array) => {
         <option>Otros</option>
       </select>
       <input type="date" name="fecha"/>
-      <button id="buttonSubmit" type="submit">Agregar</button>`;
+      <button class="buttonStyle1" id="buttonSubmit" type="submit">Agregar</button>`;
 
     containerModals.append(modalCreate);
     buttonSubmit.addEventListener("click", () => agregarTarea(array));
@@ -41,10 +41,10 @@ export const renderModalEdit = (array, index) => {
     containerModals.removeChild(containerModals.children[1]);
   } else {
     containerModals.classList.remove("active");
-    const modalEdit = document.createElement("section");
-    modalEdit.className = "modalEdit";
+    const modalEdit = document.createElement("from");
+    modalEdit.className = "modalEdit modalStyle";
     modalEdit.innerHTML = `
-        <input name="nombre" type="text" autocomplete="off"/>
+        <input required name="nombre" type="text" autocomplete="off"/>
         <select name="prioridad">
           <option>Ninguna</option>
           <option>Alta</option>
@@ -60,33 +60,54 @@ export const renderModalEdit = (array, index) => {
           <option>Juegos</option>
           <option>Otros</option>
         </select>
+        <select>
+          <option>Pendiente</option>
+          <option>Completada</option>
+        </select>
         <input type="date" name="fecha"/>
-        <button id="buttonSubmitEdit" type="submit">Editar</button>`;
+        <button class="buttonStyle1" id="buttonSubmitEdit" type="submit">Editar</button>`;
     modalEdit.children[0].value = array[index].Nombre;
     modalEdit.children[1].value = array[index].Prioridad;
     modalEdit.children[2].value = array[index].Categoria;
-    modalEdit.children[3].value = array[index].Fecha;
-
+    modalEdit.children[4].value = array[index].Fecha;
+    console.log(array);
     containerModals.append(modalEdit);
-    // buttonSubmitEdit.addEventListener("click", () => editarTarea(modalEdit, array, index));
+    buttonSubmitEdit.addEventListener("click", () => editarTarea(modalEdit, array, index));
   }
 };
 
 export const renderModalFilter = (array) => {
-    if (containerModals.className != "containerModal active") {
-        containerModals.classList.add("active");
-        containerModals.removeChild(containerModals.children[1]);
-      } else {
-        containerModals.classList.remove("active");
-        const modalFilter = document.createElement("section");
-        modalFilter.className = "modalFilter";
-        modalFilter.innerHTML = `
-        <button>Todo</button>
-        <button>Prioridad</button>
-        <button>Categoria</button>
-        <button>Fecha</button>
-        <button>Completada</button>`;
-        containerModals.append(modalFilter)
-        filtrarTareas(array, "")
-      }
+  if (containerModals.className != "containerModal active") {
+    containerModals.classList.add("active");
+    containerModals.removeChild(containerModals.children[1]);
+  } else {
+    containerModals.classList.remove("active");
+    const modalFilter = document.createElement("section");
+    modalFilter.className = "modalFilter";
+    modalFilter.innerHTML = `
+        <h3>Filtros</h3>
+        <div class="filtros">
+        <button class="buttonStyle1">Todo</button>
+        <button class="buttonStyle1">Prioridad</button>
+        <button class="buttonStyle1">Fecha</button>
+        <button class="buttonStyle1">Completada</button>
+        </div>
+        <h3>Categorias</h3>
+        <div class="filtrosCategoria">
+        <button class="buttonStyle1">Hogar</button>
+        <button class="buttonStyle1">GYM</button>
+        <button class="buttonStyle1">Trabajo</button>
+        <button class="buttonStyle1">Estudio</button>
+        <button class="buttonStyle1">Juegos</button>
+        <button class="buttonStyle1">Otros</button>
+        </div>`;
+    const filtros = [...modalFilter.children[1].children];
+    const todosLosFiltros = filtros.concat([
+      ...modalFilter.children[3].children,
+    ]);
+    todosLosFiltros.map((x) => {
+      x.addEventListener("click", () => filtrarTareas(array, x.innerText));
+    });
+    containerModals.append(modalFilter);
+  }
 };

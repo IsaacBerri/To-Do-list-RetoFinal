@@ -1,5 +1,5 @@
 import { agregarTarea, filtrarTareas } from "./main2.js";
-// import { editarTarea } from "./main3.js";
+import { editarTarea } from "./main3.js";
 const containerModals = document.querySelector(".containerModal");
 
 export const renderModalCreate = (array) => {
@@ -106,7 +106,7 @@ export const renderModalFilter = () => {
       ...modalFilter.children[3].children,
     ]);
     todosLosFiltros.map((x) => {
-      x.addEventListener("click", () => filtrarTareas(x.innerText));
+      x.addEventListener("click", () => {filtrarTareas(x.innerText), renderModalCreate()});
     });
     containerModals.append(modalFilter);
   }

@@ -3,10 +3,12 @@ const container = document.querySelector(".containerList");
 
 export function agregarTarea(array) {
   if (formulario.children[1].children[0].value !== "") {
+    const newValorPrioridad = formulario.children[1].children[1].value == "Prioridad" ? "Ninguna" : formulario.children[1].children[1].value
+    const newValorCategoria = formulario.children[1].children[2].value == "Categoria" ? "Ninguna" : formulario.children[1].children[2].value
     const tarea = {
       Nombre: formulario.children[1].children[0].value,
-      Prioridad: formulario.children[1].children[1].value,
-      Categoria: formulario.children[1].children[2].value,
+      Prioridad: newValorPrioridad,
+      Categoria: newValorCategoria,
       Fecha: formulario.children[1].children[3].value,
       Completada: false,
     };

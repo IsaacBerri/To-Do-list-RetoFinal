@@ -38,7 +38,6 @@ export function filtrarTareas(tipoFiltro) {
       x.classList.add("active");
       console.log(x);
     });
-
   } else if (tipoFiltro === "Fecha") {
     console.log(tipoFiltro);
     const filtro = convercionArray.filter((x) => x.children[3].innerText == "");
@@ -48,17 +47,15 @@ export function filtrarTareas(tipoFiltro) {
       x.classList.remove("task");
       x.classList.add("active");
     });
-
   } else if (tipoFiltro === "Completada") {
     const filtro = convercionArray.filter(
-      (x) => x.children[0].className == "tachado"
+      (x) => x.children[0].className !== "tachado"
     );
     eliminarActive();
     filtro.map((x) => {
       x.classList.remove("task");
       x.classList.add("active");
     });
-    
   } else {
     const filtro = convercionArray.filter(
       (x) => x.children[2].innerText !== tipoFiltro

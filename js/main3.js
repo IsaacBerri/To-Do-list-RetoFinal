@@ -9,11 +9,14 @@ export function eliminarTarea(array, id) {
 }
 
 export function editarTarea(formulario, array, index) {
+  let validation = formulario.children[3].value === "Completada"
+console.log(validation);
   let newTask = {
     Nombre: formulario.children[0].value,
     Prioridad: formulario.children[1].value,
     Categoria: formulario.children[2].value,
-    Fecha: formulario.children[3].value,
+    Completada: validation,
+    Fecha: formulario.children[4].value,
   };
   array.splice(index, 1, newTask);
 

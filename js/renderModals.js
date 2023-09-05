@@ -1,5 +1,5 @@
 import { agregarTarea, filtrarTareas } from "./main2.js";
-import { editarTarea } from "./main3.js";
+// import { editarTarea } from "./main3.js";
 const containerModals = document.querySelector(".containerModal");
 
 export const renderModalCreate = (array) => {
@@ -11,15 +11,15 @@ export const renderModalCreate = (array) => {
     const modalCreate = document.createElement("form");
     modalCreate.className = "modalCreate modalStyle";
     modalCreate.innerHTML = `
-      <input required class="inputNombre" placeholder="Nombre" type="text" autocomplete="off"/>
-      <select name="prioridad">
-      <option>Ninguna</option>
+      <input required class="inputNombre" placeholder="Nombre de tarea" type="text" autocomplete="off"/>
+      <select>
+        <option>Prioridad</option>
         <option>Alta</option>
         <option>Media</option>
         <option>Baja</option>
       </select>
-      <select name="categoria">
-      <option>Ninguna</option>
+      <select>
+        <option>Categoria</option>
         <option>Hogar</option>
         <option>GYM</option>
         <option>Trabajo</option>
@@ -27,7 +27,7 @@ export const renderModalCreate = (array) => {
         <option>Juegos</option>
         <option>Otros</option>
       </select>
-      <input type="date" name="fecha"/>
+      <input type="date"/>
       <button class="buttonStyle1" id="buttonSubmit" type="submit">Agregar</button>`;
 
     containerModals.append(modalCreate);
@@ -76,7 +76,7 @@ export const renderModalEdit = (array, index) => {
   }
 };
 
-export const renderModalFilter = (array) => {
+export const renderModalFilter = () => {
   if (containerModals.className != "containerModal active") {
     containerModals.classList.add("active");
     containerModals.removeChild(containerModals.children[1]);
@@ -106,7 +106,7 @@ export const renderModalFilter = (array) => {
       ...modalFilter.children[3].children,
     ]);
     todosLosFiltros.map((x) => {
-      x.addEventListener("click", () => filtrarTareas(array, x.innerText));
+      x.addEventListener("click", () => filtrarTareas(x.innerText));
     });
     containerModals.append(modalFilter);
   }

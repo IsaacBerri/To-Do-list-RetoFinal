@@ -15,7 +15,6 @@ const renderizarTareas = () => {
   task.map((x, i) => {
     const createTask = document.createElement("div");
     createTask.className = "task";
-    createTask.id = `taks-${i}`;
     createTask.innerHTML = `
       <h3 class=${x.Completada ? "tachado" : null}>${x.Nombre}</h3>
       <p>${x.Prioridad}</p>
@@ -40,6 +39,6 @@ butoonCreate.forEach((button) => {
   button.addEventListener("click", () => renderModalCreate(task));
 });
 
-butoonFilter.addEventListener("click", () => renderModalFilter(task));
+butoonFilter.addEventListener("click", () => renderModalFilter());
 
 renderizarTareas();
